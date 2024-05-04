@@ -1,8 +1,11 @@
+"use client";
+import { useState } from "react";
 import AllCandidate from "./allCandidate/allCandidate";
 import CandidateDetails from "./candidate-details/CandidateDetails";
 import "./rightSideBar.css";
 export default function RightSideBar() {
-  
+  const [stateData, setStateData] = useState({});
+  console.log(stateData);
   return (
     <div className="right-Side-Bar-container">
       <div>
@@ -13,10 +16,10 @@ export default function RightSideBar() {
       </div>
       <div>
         <div>
-          <AllCandidate />
+          <AllCandidate setStateData={setStateData} />
         </div>
         <div>
-          <CandidateDetails />
+          <CandidateDetails stateData={stateData} />
         </div>
       </div>
     </div>

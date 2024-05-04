@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import "./CandidateDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
-export default function CandidateDetails() {
+export default function CandidateDetails({ stateData }) {
+  console.log(stateData);
   const data = ["Tell me about yourself", "What is Front end development"];
   const [index, setIndex] = useState(0);
   const [storageData, setStorageData] = useState(
@@ -36,21 +37,19 @@ export default function CandidateDetails() {
             <div>
               <img
                 src={
-                  candidateData
-                    ? candidateData.image
+                  stateData
+                    ? stateData.image
                     : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s"
                 }
               />
             </div>
             <div>
-              <h4>{candidateData ? candidateData.name : "Ankita Singh"}</h4>
-              <h6>
-                {candidateData ? candidateData.email : "ankita@gmail.com"}
-              </h6>
+              <h4>{stateData ? stateData.name : "Ankita Singh"}</h4>
+              <h6>{stateData ? stateData.email : "ankita@gmail.com"}</h6>
             </div>
           </div>
           <div>
-            <h4>{candidateData ? candidateData.score : "78"}%</h4>
+            <h4>{stateData ? stateData.score : "78"}%</h4>
           </div>
         </div>
         <div>

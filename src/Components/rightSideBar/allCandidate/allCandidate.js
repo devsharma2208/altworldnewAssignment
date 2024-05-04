@@ -4,13 +4,15 @@ import "./allCandidate.css";
 import { useState } from "react";
 import Link from "next/link";
 
-export default function AllCandidate() {
+export default function AllCandidate({ setStateData }) {
   const [status, setStatus] = useState(true);
   console.log(jsonData[0]);
   const handleLocalStorage = (index) => {
+    setStateData(jsonData[index]);
     localStorage.setItem("selectedItem", JSON.stringify(jsonData[index]));
     console.log(JSON.parse(localStorage.getItem("selectedItem")));
   };
+
   return (
     <div className="allCandidate-container">
       <div className="assignment-details">
