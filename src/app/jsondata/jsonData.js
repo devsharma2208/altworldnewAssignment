@@ -7,6 +7,7 @@ const jsonData = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s",
   },
   {
+    // some
     name: "Vidhi Singh",
     email: "vidhi@gmail.com",
     score: 58,
