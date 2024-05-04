@@ -9,16 +9,21 @@ export default function CandidateDetails() {
   const [showdata, setShowData] = useState(data[index]);
   const [candidateData, setCandidateData] = useState(null);
 
-  const jsonString = JSON.parse(localStorage.getItem("selectedItem"));
+  //   const jsonString = JSON.parse(localStorage.getItem("selectedItem"));
   useEffect(() => {
-    if (jsonString) {
-      try {
-        setCandidateData(jsonString);
-      } catch (error) {
-        console.error("Error parsing JSON data from localStorage:", error);
+    // Check if localStorage is available
+    if (typeof window !== "undefined") {
+      const jsonString = localStorage.getItem("selectedItem");
+      if (jsonString) {
+        try {
+          const parsedData = JSON.parse(jsonString);
+          setCandidateData(parsedData);
+        } catch (error) {
+          console.error("Error parsing JSON data from localStorage:", error);
+        }
       }
     }
-  }, [jsonString]);
+  }, []);
   return (
     <div className="candidate-details-container">
       <div>
