@@ -4,30 +4,30 @@ import "./CandidateDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 export default function CandidateDetails({ stateData }) {
-  console.log(stateData);
+  
   const data = ["Tell me about yourself", "What is Front end development"];
   const [index, setIndex] = useState(0);
-  const [storageData, setStorageData] = useState(
-    typeof window.localStorage !== "undefined" &&
-      localStorage.getItem("selectedItem")
-  );
+  // const [storageData, setStorageData] = useState(
+  //   typeof window !== "undefined" &&
+  //     localStorage.getItem("selectedItem")
+  // );
   const [showdata, setShowData] = useState(data[index]);
   const [candidateData, setCandidateData] = useState(null);
 
-  useEffect(() => {
-    setStorageData(
-      typeof window.localStorage !== "undefined" &&
-        localStorage.getItem("selectedItem")
-    );
-    if (storageData) {
-      try {
-        const parsedData = JSON.parse(storageData);
-        setCandidateData(parsedData);
-      } catch (error) {
-        console.error("Error parsing JSON data from localStorage:", error);
-      }
-    }
-  }, [storageData]);
+  // useEffect(() => {
+  //   setStorageData(
+  //     typeof window.localStorage !== "undefined" &&
+  //       localStorage.getItem("selectedItem")
+  //   );
+  //   if (storageData) {
+  //     try {
+  //       const parsedData = JSON.parse(storageData);
+  //       setCandidateData(parsedData);
+  //     } catch (error) {
+  //       console.error("Error parsing JSON data from localStorage:", error);
+  //     }
+  //   }
+  // }, [storageData]);
 
   return (
     <div className="candidate-details-container">
