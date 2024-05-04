@@ -1,11 +1,15 @@
 "use client";
 import jsonData from "@/app/jsondata/jsonData";
 import "./allCandidate.css";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function AllCandidate() {
+  const [status, setStatus] = useState(true);
   console.log(jsonData[0]);
   const handleLocalStorage = (index) => {
     localStorage.setItem("selectedItem", JSON.stringify(jsonData[index]));
+    console.log(JSON.parse(localStorage.getItem("selectedItem")));
   };
   return (
     <div className="allCandidate-container">
@@ -30,7 +34,9 @@ export default function AllCandidate() {
             <img src="https://static-00.iconduck.com/assets.00/edit-icon-2048x2048-6svwfwto.png" />
           </div>
           <div>
-            <h5>https://tiny.url/asknakdna/</h5>
+            <Link href="https://www.linkedin.com/company/altworld/">
+              https://altworld.in/
+            </Link>
           </div>
           <div>
             {" "}
@@ -43,11 +49,17 @@ export default function AllCandidate() {
         </div>
       </div>
       <div className="buttons">
-        <button className="active">
+        <button
+          className={`${status && "active"}`}
+          onClick={() => setStatus(true)}
+        >
           <img src="https://cdn-icons-png.freepik.com/512/20/20256.png" /> TO
           REVIEW
         </button>
-        <button className="active">
+        <button
+          className={`${!status && "active"}`}
+          onClick={() => setStatus(false)}
+        >
           <img src="https://cdn-icons-png.freepik.com/512/91/91749.png" />{" "}
           SHORTLISTED
         </button>
@@ -56,87 +68,47 @@ export default function AllCandidate() {
         <div>CANDIDATE</div>
         <div>SCORE</div>
       </div>
-      <div className="candidateDetails">
-        {jsonData.map((item, index) => {
-          return (
-            <div onClick={() => handleLocalStorage(index)}>
-              <div>
+      {status ? (
+        <div className="candidateDetails">
+          {jsonData.map((item, index) => {
+            return (
+              <div onClick={() => handleLocalStorage(index)}>
                 <div>
-                  <img src={item.image} />
+                  <div>
+                    <img src={item.image} />
+                  </div>
+                  <div>{item.name}</div>
                 </div>
-                <div>{item.name}</div>
+                <div className={`${item.score < 40 && "orange"}`}>
+                  {item.score}%
+                </div>
               </div>
-              <div className={`${item.score < 40 && "orange"}`}>
-                {item.score}%
-              </div>
-            </div>
-          );
-        })}
-
-        {/* <div>
-          <div>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
-            </div>
-            <div>Ankita Singh</div>
-          </div>
-          <div>78%</div>
+            );
+          })}
         </div>
-        <div>
-          <div>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
-            </div>
-            <div>Ankita Singh</div>
-          </div>
-          <div>78%</div>
+      ) : (
+        <div className="candidateDetails">
+          {jsonData.map((item, index) => {
+            return (
+              <>
+                {item.status == "sortlisted" && (
+                  <div onClick={() => handleLocalStorage(index)}>
+                    <div>
+                      <div>
+                        <img src={item.image} />
+                      </div>
+                      <div>{item.name}</div>
+                    </div>
+                    <div className={`${item.score < 40 && "orange"}`}>
+                      {item.score}%
+                    </div>
+                  </div>
+                )}
+              </>
+            );
+          })}
         </div>
-        <div>
-          <div>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
-            </div>
-            <div>Ankita Singh</div>
-          </div>
-          <div>78%</div>
-        </div>
-        <div>
-          <div>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
-            </div>
-            <div>Ankita Singh</div>
-          </div>
-          <div>32%</div>
-        </div>
-        <div>
-          <div>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
-            </div>
-            <div>Ankita Singh</div>
-          </div>
-          <div>80%</div>
-        </div>
-        <div>
-          <div>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
-            </div>
-            <div>Ankita Singh</div>
-          </div>
-          <div>25%</div>
-        </div>
-        <div>
-          <div>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
-            </div>
-            <div>Ankita Singh</div>
-          </div>
-          <div>78%</div>
-        </div> */}
-      </div>
+      )}
     </div>
   );
 }

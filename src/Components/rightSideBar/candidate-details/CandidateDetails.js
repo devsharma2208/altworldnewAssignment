@@ -6,31 +6,41 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 export default function CandidateDetails() {
   const data = ["Tell me about yourself", "What is Front end development"];
   const [index, setIndex] = useState(0);
+  const [storageData, setStorageData] = useState(
+    typeof window.localStorage !== "undefined" &&
+      localStorage.getItem("selectedItem")
+  );
   const [showdata, setShowData] = useState(data[index]);
   const [candidateData, setCandidateData] = useState(null);
 
-  //   const jsonString = JSON.parse(localStorage.getItem("selectedItem"));
   useEffect(() => {
-    // Check if localStorage is available
-    if (typeof window !== "undefined") {
-      const jsonString = localStorage.getItem("selectedItem");
-      if (jsonString) {
-        try {
-          const parsedData = JSON.parse(jsonString);
-          setCandidateData(parsedData);
-        } catch (error) {
-          console.error("Error parsing JSON data from localStorage:", error);
-        }
+    setStorageData(
+      typeof window.localStorage !== "undefined" &&
+        localStorage.getItem("selectedItem")
+    );
+    if (storageData) {
+      try {
+        const parsedData = JSON.parse(storageData);
+        setCandidateData(parsedData);
+      } catch (error) {
+        console.error("Error parsing JSON data from localStorage:", error);
       }
     }
-  }, []);
+  }, [storageData]);
+
   return (
     <div className="candidate-details-container">
       <div>
         <div>
           <div>
             <div>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s" />
+              <img
+                src={
+                  candidateData
+                    ? candidateData.image
+                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s"
+                }
+              />
             </div>
             <div>
               <h4>{candidateData ? candidateData.name : "Ankita Singh"}</h4>
@@ -46,15 +56,27 @@ export default function CandidateDetails() {
         <div>
           <div className="lkfddlkf">
             <p>Behavioural</p>
-            <ProgressBar variant="success" now={40} />
+            <ProgressBar
+              variant="success"
+              now={70}
+              style={{ width: "60%", height: "12px" }}
+            />
           </div>
           <div className="lkfddlkf">
             <p>Communication</p>
-            <ProgressBar variant="warning" now={60} />
+            <ProgressBar
+              variant="warning"
+              now={60}
+              style={{ width: "60%", height: "12px" }}
+            />
           </div>
           <div className="lkfddlkf">
             <p> Situation handling</p>
-            <ProgressBar variant="danger" now={80} />
+            <ProgressBar
+              variant="danger"
+              now={90}
+              style={{ width: "60%", height: "12px" }}
+            />
           </div>
         </div>
         <div>
