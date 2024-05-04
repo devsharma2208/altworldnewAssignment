@@ -1,0 +1,26 @@
+.right-Side-Bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    > h5 {
+      font-size: 0.7rem;
+      font-weight: 500;
+      > span {
+        color: rgb(151, 147, 147);
+      }
+    }
+    > h3 {
+      font-size: 1rem;
+      color: rgb(59, 58, 58);
+    }
+  }
+  > div:last-child {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1rem;
+  }
+}
