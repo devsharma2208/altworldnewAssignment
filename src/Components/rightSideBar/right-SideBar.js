@@ -4,7 +4,7 @@ import AllCandidate from "./allCandidate/allCandidate";
 import CandidateDetails from "./candidate-details/CandidateDetails";
 import "./rightSideBar.css";
 export default function RightSideBar() {
-  const [stateData, setStateData] = useState({});
+  const [stateData, setStateData] = useState(null);
   console.log(stateData);
   return (
     <div className="right-Side-Bar-container">
