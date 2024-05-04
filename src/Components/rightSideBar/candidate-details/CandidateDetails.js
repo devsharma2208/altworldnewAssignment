@@ -1,33 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./CandidateDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 export default function CandidateDetails({ stateData }) {
-  
   const data = ["Tell me about yourself", "What is Front end development"];
   const [index, setIndex] = useState(0);
-  // const [storageData, setStorageData] = useState(
-  //   typeof window !== "undefined" &&
-  //     localStorage.getItem("selectedItem")
-  // );
-  const [showdata, setShowData] = useState(data[index]);
-  const [candidateData, setCandidateData] = useState(null);
 
-  // useEffect(() => {
-  //   setStorageData(
-  //     typeof window.localStorage !== "undefined" &&
-  //       localStorage.getItem("selectedItem")
-  //   );
-  //   if (storageData) {
-  //     try {
-  //       const parsedData = JSON.parse(storageData);
-  //       setCandidateData(parsedData);
-  //     } catch (error) {
-  //       console.error("Error parsing JSON data from localStorage:", error);
-  //     }
-  //   }
-  // }, [storageData]);
+  const [showdata, setShowData] = useState(data[index]);
 
   return (
     <div className="candidate-details-container">
@@ -81,8 +61,9 @@ export default function CandidateDetails({ stateData }) {
         <div>
           <h4>About</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-            amet.
+            {stateData
+              ? stateData.about
+              : "I am passionate about coding and enjoy building scalable solutions that make a di"}
           </p>
         </div>
         <div>

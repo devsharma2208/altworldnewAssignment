@@ -22,13 +22,16 @@
             border-radius: 0.7rem;
           }
           > h4 {
+            font-size: 1.1rem;
             color: rgb(57, 55, 55);
           }
           > h6 {
+            font-size: 0.8rem;
             color: gray;
           }
         }
         > h4 {
+          font-size: 1rem;
           color: rgb(10, 194, 10);
         }
       }
