@@ -3,14 +3,17 @@ import jsonData from "@/app/jsondata/jsonData";
 import "./allCandidate.css";
 import { useState } from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 
-export default function AllCandidate({ setStateData }) {
+export default function AllCandidate() {
   const [status, setStatus] = useState(true);
   console.log(jsonData[0]);
+  const dispatch = useDispatch();
   const handleLocalStorage = (index) => {
-    setStateData(jsonData[index]);
-    localStorage.setItem("selectedItem", JSON.stringify(jsonData[index]));
-    console.log(JSON.parse(localStorage.getItem("selectedItem")));
+    dispatch({
+      type: "ADD_CANDIDTE_DATA",
+      candidateDetails: jsonData[index],
+    });
   };
 
   return (

@@ -5,10 +5,7 @@ import CandidateDetails from "./candidate-details/CandidateDetails";
 import "./rightSideBar.css";
 import { useSelector } from "react-redux";
 export default function RightSideBar() {
-  const [stateData, setStateData] = useState(null);
-  const count = useSelector((state) => state);
-  console.log(count);
-  console.log(stateData);
+ 
   return (
     <div className="right-Side-Bar-container">
       <div>
@@ -19,10 +16,10 @@ export default function RightSideBar() {
       </div>
       <div>
         <div>
-          <AllCandidate setStateData={setStateData} />
+          <AllCandidate  />
         </div>
         <div>
-          <CandidateDetails stateData={stateData} />
+          <CandidateDetails />
         </div>
       </div>
     </div>

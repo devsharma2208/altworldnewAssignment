@@ -3,10 +3,12 @@ import { useState } from "react";
 import "./CandidateDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
-export default function CandidateDetails({ stateData }) {
+import { useSelector } from "react-redux";
+
+export default function CandidateDetails() {
+  const selector = useSelector((state) => state);
   const data = ["Tell me about yourself", "What is Front end development"];
   const [index, setIndex] = useState(0);
-
   const [showdata, setShowData] = useState(data[index]);
 
   return (
@@ -17,19 +19,19 @@ export default function CandidateDetails({ stateData }) {
             <div>
               <img
                 src={
-                  stateData
-                    ? stateData.image
+                  selector
+                    ? selector.image
                     : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7YBAz_b5aBQNgs0pq81o4oxDzSfda5w7-0Q9UyYtQpg&s"
                 }
               />
             </div>
             <div>
-              <h4>{stateData ? stateData.name : "Ankita Singh"}</h4>
-              <h6>{stateData ? stateData.email : "ankita@gmail.com"}</h6>
+              <h4>{selector ? selector.name : "Ankita Singh"}</h4>
+              <h6>{selector ? selector.email : "ankita@gmail.com"}</h6>
             </div>
           </div>
           <div>
-            <h4>{stateData ? stateData.score : "78"}%</h4>
+            <h4>{selector ? selector.score : "78"}%</h4>
           </div>
         </div>
         <div>
@@ -61,8 +63,8 @@ export default function CandidateDetails({ stateData }) {
         <div>
           <h4>About</h4>
           <p>
-            {stateData
-              ? stateData.about
+            {selector
+              ? selector.about
               : "I am passionate about coding and enjoy building scalable solutions that make a di"}
           </p>
         </div>
